@@ -1,0 +1,87 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 962841c443e5a53d5eeec9393d320a451646f22b890f6e81cf71e9ec20f3b81c
+
+name:           pandocAPI
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/hgflimited/pandocAPI#readme>
+homepage:       https://github.com/hgflimited/pandocAPI#readme
+bug-reports:    https://github.com/hgflimited/pandocAPI/issues
+author:         Patrick Henderson
+maintainer:     phenderson@hgf.com
+copyright:      2020 HGF Limited
+license:        MIT
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/hgflimited/pandocAPI
+
+library
+  exposed-modules:
+      Convert
+      Lib
+  other-modules:
+      Paths_pandocAPI
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+    , bytestring
+    , directory
+    , http-types
+    , pandoc
+    , resourcet
+    , wai
+    , wai-extra
+    , warp
+  default-language: Haskell2010
+
+executable pandocAPI-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_pandocAPI
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , bytestring
+    , directory
+    , http-types
+    , pandoc
+    , pandocAPI
+    , resourcet
+    , wai
+    , wai-extra
+    , warp
+  default-language: Haskell2010
+
+test-suite pandocAPI-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_pandocAPI
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , bytestring
+    , directory
+    , http-types
+    , pandoc
+    , pandocAPI
+    , resourcet
+    , wai
+    , wai-extra
+    , warp
+  default-language: Haskell2010
