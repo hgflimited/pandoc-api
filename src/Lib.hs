@@ -7,8 +7,10 @@ import Control.Monad.Trans.Resource
 import Network.Wai
 import Network.Wai.Parse (FileInfo (..), parseRequestBody, tempFileBackEndOpts)
 import Network.HTTP.Types
+import Network.Mime (defaultMimeLookup)
 import System.Directory (getTemporaryDirectory)
 import qualified Data.ByteString.Char8 as B
+import qualified Data.Text as T
 import Convert (convert)
 
 app :: Application
@@ -18,7 +20,7 @@ app request respond = do
 
 convertRequestFile internalState request = do
   (_, files) <- parseRequestBody (tempFileBackEndOpts getTemporaryDirectory ".md" internalState) request
-  file <- convertFile ( getFile $ head files ) "jsp.pdf"
+  file <- convertFile ( getFile $ head files ) "response.pdf"
   return file
 
 convertFile :: FilePath -> FilePath -> IO FilePath
@@ -31,7 +33,7 @@ getFile (_, (FileInfo _ _ fileContent)) = fileContent
 
 respondWithFile :: FilePath -> Response
 respondWithFile path = responseFile
-  status200
-  [("Content-Type", "application/pdf")]
-  path
-  Nothing
+ status200
+ [("Content-Type", defaultMimeLookup $ T.pack path)]
+ path
+ Nothing
