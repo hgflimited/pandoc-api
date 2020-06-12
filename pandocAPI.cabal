@@ -37,6 +37,8 @@ library
       base >=4.7 && <5
     , bytestring
     , directory
+    , text
+    , mime-types
     , http-types
     , pandoc
     , resourcet

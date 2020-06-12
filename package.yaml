@@ -26,6 +26,8 @@ dependencies:
 - pandoc
 - http-types
 - resourcet
+- text
+- mime-types
 - wai
 - wai-extra
 - warp
